@@ -15,7 +15,8 @@ Proven on **The Bridge That Fell for a Song**, a 67 s short about the 1831 Broug
 | `templates/scripts/` | Stills, side-by-side sheets, shot merge and frame-by-frame QA helpers |
 | `references/STYLE_BIBLE.md` | The script and visual formula measured from 20 reference shorts |
 | `references/reports/` | Seven measured reports: motion, depth, textures, characters, lighting, outlines, grade |
-| `references/frames/` | 38 reference frames (540x960, about 2 per short) to compare your frames against |
+| `references/frames/` | 38 full-size reference frames (540x960) to compare your frames against |
+| `references/sheets/` | 20 contact sheets, one per reference short, 60 frames each (1,200 frames) |
 
 ## Install
 1. Copy this folder to `~/.claude/skills/cartoon-3d-short/` (clone it there, or download the ZIP).
