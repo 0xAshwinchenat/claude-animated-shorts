@@ -67,7 +67,7 @@ per-frame similarity fit and the same statistics as the reference; `ourwalk.py` 
 | Zoom in quiet frames (translation < 2 px/f) | active (≥ 0.05 %/f) in 70 % of frames, 83 % of those push in; rate median 0.14 %/f, p75 0.34, p90 0.70 | active 55 %, 63 % push in; median 0.06 %/f, p75 0.16 | pushes 2.4x slower, often lateral drift instead |
 | Push-in runs (≥ 12 f) | 336 push-ins vs 180 pull-outs; median 35 f, +22 %, 0.61 %/f. Slow ones (< 0.3 %/f): 25 f, +3.7 % | linear `drift()` | no deliberate push-ins |
 | Snap zoom / crane | v08 snap zoom 0.4→5.9 %/f (+38 % in 14 f); v03 crane pull-back up to −4.6 %/f, ~45 f speeding up, ~60 f slowing down | 13 moves that zoom by up to 275 % or travel 0.7-3.7 frame widths in 3-8 f | |
-| Roll moves | 3.2 per 10 s, median 3.6° over 18 f (p75 8.1°, p90 17.5°) | 3.0 per 10 s, ~2.5° over ~9 f (max 9.6°) | half as long, a bit small |
+| Roll moves (CORRECTED 2026-11-06: the tile fit counts image rotation from orbits/perspective as roll; roll_meter.py on world verticals finds the camera level, median 0.3°, roll only on ride-alongs; see SKILL.md "Level horizon") | 3.2 per 10 s, median 3.6° over 18 f (p75 8.1°, p90 17.5°) | 3.0 per 10 s, ~2.5° over ~9 f (max 9.6°) | half as long, a bit small |
 | Hand-held float | **none**: high-frequency residual 0.08 px median (0.05-0.29) | 0.006 m sine float = 0.03 px/f median (invisible) | delete it |
 | Impact shake | v14 spear: offset flips sign **every frame** (15 Hz), ~3 px offset (≈5 px/f), roll ±0.1-0.35°, gone in 6-8 f; the push-in stops at the hit | 6.4 Hz sine, linear decay over 15 f: bolt 28.7 px/f, deck→water 15.5, hammer 10.7 on the first frame | 2-5x stronger, 2x longer, slow wobble |
 | Whip pans | 0.45 per minute (5 real ones in 18 min). 45-93 px/f for 7-25 f, 2-3 f ramp up and down, **strong directional motion blur**: v13 175-183 (30→93→25), v07 58-90 (~47 vertical), v09 1334-1343 (peak 56) | none on purpose, but 13 un-blurred "fly" moves at 79-488 px/f | |
@@ -197,7 +197,7 @@ Rates:
 - 0.0015-0.0035 on every hold.
 - 0.006 for about 35 f on the punch words: "pride of the whole town", "starts bouncing", the bolt line, "the best drilled soldiers".
 
-The push stops on an impact: cut, or end the key at the hit frame. On emphasis keys, set `roll` to ±0.06-0.14 rad
+The push stops on an impact: cut, or end the key at the hit frame. On emphasis keys, set `roll` to ±0.06-0.14 rad **[SUPERSEDED 2026-11-06: keep the camera level; roll only on ride-alongs, see SKILL.md "Level horizon" / gate 17]**
 (3.6-8°) with `dur` ≥ 18. The current ±0.02-0.06 is fine on calm keys.
 
 **c) Impacts: frame-alternating kicks, no float.** This replaces `SHAKES`, the `k` / `n()` float and the sine shake in
@@ -395,9 +395,9 @@ export class WhipBlur extends Effect { constructor() { super("WhipBlur", frag, {
    - Today, 13 key moves travel 0.7-3.7 frame widths or zoom by up to 275 % in 3-8 frames, at 79-488 px/f with no blur.
    - The reference moves peak at 14-16 px/f and ease in and out over ~23 f. Its whips (≤ 93 px/f) always carry heavy blur.
    - This is the biggest "cheap" tell in our film.
-2. **Push in on every hold; roll on emphasis beats** (`story.ts` CAMS: `push()` instead of `drift()`).
+2. **Push in on every hold** (~~roll on emphasis beats~~: superseded 2026-11-06, the camera stays level) (`story.ts` CAMS: `push()` instead of `drift()`).
    - Base 0.15-0.35 %/f, and 0.6 %/f for ~35 f on punch words.
-   - Rolls of 4-8° glided over ≥ 18 f.
+   - Rolls of 4-8° glided over ≥ 18 f. **[SUPERSEDED 2026-11-06: keep the camera level; roll only on ride-alongs, see SKILL.md "Level horizon" / gate 17]**
    - Stop the push on impacts.
 3. **Walk and march mechanics** (`toon.ts` `bodyFront` / `bodySide`; `cast.ts` `column` / `tourists`; optional
    `marchPhase`).

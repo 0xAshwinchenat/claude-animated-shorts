@@ -16,7 +16,8 @@ Private study only. Videos: vids/ (720p, original EN audio), transcripts: tx/, p
 3. **Escalation, 3-6 beats**: others laugh / doubt / mock (short in-character dialogue lines), stakes climb.
    1-2 exaggeration jokes per video (claim vs reality, "so slow X, and X was ...").
 4. **Mystery beat**: a question or "Wait, ...?" (~1 per video).
-5. **Pivot word "You see,"** (14 of 20 videos) → the real mechanism. Often an everyday analogy
+5. **Pivot word "You see,"** (14 of 20 videos) → the real mechanism. It lands at ~70 % of the runtime (22-short study:
+   reveal at ~70 % → median 11 M views; explained early → 3.4 M). Often an everyday analogy
    ("Ever ...?", "think about the last time ...", "picture your body as ...").
 6. **Ironic payoff** in the last 1-2 sentences, short, lands the twist. Video ends on the last word.
 - Two modes: story mode (third person "he", named everyman, present tense) and "Imagine you're..." second person.
@@ -24,6 +25,8 @@ Private study only. Videos: vids/ (720p, original EN audio), transcripts: tx/, p
 
 ## Picture
 - 2D flat cartoon characters (simple outlined faces, thin black outline, flat colors) standing in **3D toon environments**.
+  The 22-short study (2026-11-04) is >95 % sure the characters are TRUE 3D toon renders (back of the head on turnarounds,
+  depth parallax): ~3.1 heads, sphere head h/w 0.92, ink-tube arms, ball hands, decal faces, plum ink #2a1b26, never #000.
 - 3D environments: hand-painted textures, saturated colors, **thin black ink outlines on 3D geometry** (edges + creases),
   soft depth of field on backgrounds, warm key light + blue/purple shadows, light pools (window light) that also tint the characters.
 - Characters receive scene light/shadow (they are lit, not pure emission), cast ground shadows.
@@ -33,11 +36,17 @@ Private study only. Videos: vids/ (720p, original EN audio), transcripts: tx/, p
 
 ## Camera / editing (measured)
 - **Hard cuts almost never**: 0-1 per video in 12/20 videos; most "cuts" detected are 4-frame flash effects.
-- Camera holds ~80% of frames (moves < 0.5 px/frame); moves are **ease-out bursts**: peak speed at the first frame of the move,
-  decaying over ~8-10 frames (720p px/frame e.g. 6, 26, 12, 14, 6, 5, 2, 1).
+- CORRECTED (reports/motion.md and the 22-short study of 2026-11-04): the camera does NOT hold ~80 % and the moves are
+  NOT ease-out bursts (that was an integer-phase artefact). Moves are symmetric ease-in-out ~23 f peaking 14-16 px/f,
+  median speed 3.6 px/f, holds < 0.3 px/f only ~10 %. The 22-short study: the camera never stops, a new framing every
+  ~1.7 s (26/min, first by 1.1 s), inside a set eased flights (push 26 %, pull 16 %, whip 13 %, pan 8 %, tilt 4 %),
+  between sets portals or 7-frame dissolves (~1/3 of changes). See SKILL.md "Continuous camera".
 - Transitions = continuous camera moves: follow an object (bullet, oil stream, ball) from one subject to the next,
   whip pans with motion blur, fly-through (window/porthole), or a 6-8 frame crossfade dissolve when changing place.
-- Slow push-ins during holds; low camera heights; frequent dutch tilts for drama/falls.
+- Slow push-ins during holds; low camera heights. ~~frequent dutch tilts for drama/falls~~ CORRECTED 2026-11-06 (roll_meter.py
+  on the newest 6 shorts): the camera stays LEVEL (median roll 0.3°, p90 ~2°, characters always upright). Tilted-looking
+  frames are low-angle wide-lens perspective, rocking ships or top-down shots. Real roll only on a fast ride-along (bullet
+  cam banks to ~8-10°, back to 0 before landing).
 
 ## Effects
 - Muzzle fire, glow/aura bursts, sparkles on impact, splash sprites, speed lines, dust puffs, music notes, stars,

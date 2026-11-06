@@ -39,6 +39,10 @@ const makeBloom = () => {
 
 const fwd = new THREE.Vector3(), fpt = new THREE.Vector3();
 
+// @react-three/postprocessing is pinned to 3.0.4: 3.2.x builds its composer one render late, so Remotion's single
+// draw per frame happens before it exists and every frame comes out blank. 3.0.4's types reject null children.
+const Composer = EffectComposer as unknown as React.FC<{ multisampling?: number; children?: React.ReactNode }>;
+
 const useKit = () => {
   const [kit, setKit] = useState<Kit | null>(null);
   const [handle] = useState(() => delayRender("bridge kit"));
@@ -62,7 +66,7 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
   }), [camera, scene]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
   const post = useMemo(() => (
-    <EffectComposer multisampling={4}>
+    <Composer multisampling={4}>
       {on.ink ? <primitive object={fx.ink} dispose={null} /> : null}
       {on.lens && on.pre ? <primitive object={fx.lens.pre} dispose={null} /> : null}
       {on.lens ? <primitive object={fx.lens.main} dispose={null} /> : null}
@@ -70,7 +74,7 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
       <primitive object={fx.tone} dispose={null} />
       {on.grade ? <primitive object={fx.grade} dispose={null} /> : null}
       {on.grain ? <primitive object={fx.grain} dispose={null} /> : null}
-    </EffectComposer>
+    </Composer>
   ), [fx, on]);
   const cam = camera as THREE.PerspectiveCamera;
   target.copy(world.update(id, f, cam, scene));
