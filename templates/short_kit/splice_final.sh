@@ -5,7 +5,7 @@
 # Example: NAME=kaifeng FIXES="600:899:hq_fix.mp4 3856:4111:hq_fix2.mp4" bash splice_final.sh
 #   (render each fix with: npx remotion render src/sandboxes/<NAME>/index.tsx <COMP>ShortHQ out/<NAME>/hq_fix.mp4 --frames=600-899 ...)
 set -euo pipefail
-PROJECT=${PROJECT:-$PWD}; cd "$PROJECT"
+PROJECT=${PROJECT:-$(pwd -W 2>/dev/null || pwd)}; cd "$PROJECT"   # a Windows path (D:/...): ffmpeg cannot open /d/...
 : "${NAME:?set NAME}"; KIT=${KIT:-$PROJECT/$NAME-short}; OUT=out/$NAME
 FIXES=${FIXES:?set FIXES="first:last:file ..."}
 inputs=(); graph=""; labels=""; n=0; pos=0; idx=0
@@ -21,7 +21,7 @@ for fx in $FIXES; do
 done
 inputs+=(-i $OUT/hq120.mp4); seg "trim=start_frame=$pos,"
 ffmpeg -v error -y "${inputs[@]}" -filter_complex \
-  "$graph${labels}concat=n=$n:v=1:a=0,tmix=frames=4:weights='1 1 1 1',select='eq(mod(n\,4)\,3)',setpts=N/30/TB[v]" \
+  "$graph${labels}concat=n=$n:v=1:a=0,tmix=frames=4:weights='1 1 1 1',select='eq(mod(n\,4)\,3)',setpts=N/30/TB,cas=0.4[v]" \
   -map "[v]" -r 30 -c:v libx264 -crf 15 -preset slow -pix_fmt yuv420p -an $OUT/video30.mp4
 ffmpeg -v error -y -i $OUT/video30.mp4 -i "$KIT/audio/mix.wav" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 320k -shortest \
   $OUT/${NAME}_nocaptions.mp4

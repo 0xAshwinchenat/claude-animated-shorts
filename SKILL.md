@@ -1,17 +1,30 @@
 ---
 name: cartoon-3d-short
-description: Make a ~55-70 s vertical cartoon story short in the "cartoon characters in a colourful 3D world" style (3D toon stick figures from toon3d.ts - sphere heads with swapped decal faces, bean torsos, plum ink-tube rubber-hose limbs, ball hands - plus flat cards for crowds, painted 3D town/world with black ink lines, saturated sky, depth-of-field backgrounds, gliding cameras, voice narration, synthesized SFX + march-style music), rendered with three.js inside Remotion. GOLD STANDARD - "The Dirt Wall Genghis Khan's Best General Couldn't Break" (Kaifeng 1232, 2026-11-06, the user's best video) - follow its GOLDEN PIPELINE section and start from templates/kaifeng. Earlier proof - "The Bridge That Fell for a Song" (2026-10-31). Use when the user asks for another video "like the bridge video", "like the soldiers/bridge short", "in that cartoon 3D style", a history/science story short with cartoon characters in 3D, or says "use the cartoon short skill". Also the DEFAULT for any short or video request that is NOT tagged "FC" ("FC" requests use the faceless-shorts skill).
+description: Make a ~55-70 s vertical cartoon story short in the "cartoon characters in a colourful 3D world" style (3D toon stick figures from toon3d.ts - sphere heads with swapped decal faces, bean torsos, plum ink-tube rubber-hose limbs, ball hands - plus flat cards for crowds, painted 3D town/world with black ink lines, saturated sky, depth-of-field backgrounds, gliding cameras, voice narration, synthesized SFX + march-style music), rendered with three.js inside Remotion. GOLD STANDARD - "The Burning Pigs That Beat an Army of Elephants" (Megara 266 BC + Edessa 544 AD, 2026-11-08; the user: "make videos in the same way like this next time the voice, narration and stuffs") - story-style narration, the ElevenLabs Jesse voice used exactly as generated, follow its GOLDEN PIPELINE section and start from templates/pigs. Earlier standards - Kaifeng 1232 (templates/kaifeng, 2026-11-06), "The Bridge That Fell for a Song" (2026-10-31). Use when the user asks for another video "like the bridge video", "like the soldiers/bridge short", "in that cartoon 3D style", a history/science story short with cartoon characters in 3D, or says "use the cartoon short skill". Also the DEFAULT for any short or video request that is NOT tagged "FC" ("FC" requests use the faceless-shorts skill).
 ---
 
 # Cartoon 3D story short (three.js + Remotion)
 
-**GOLD STANDARD (the user called it "the best video ever made so far"): "The Dirt Wall Genghis Khan's Best General
-Couldn't Break"** - 69 s, the 1232 Mongol siege of Kaifeng; 3D toon heroes, ~1000 card extras, 400 instanced
-trebuchets, a continuous camera, 120 fps motion blur, burned-in captions. Its full source is `templates/kaifeng/`
-(the project) + `templates/short_kit/` (voice, sound, captions, final assembly). **Make every new short the way the
-GOLDEN PIPELINE section below says**; the rest of this file is the detail and the rules behind it.
+**GOLD STANDARD (2026-11-08; the user: "thats a really good one. make sure to make videos in the same way like this
+next time the voice, narration and stuffs. make it as gold standard"): "The Burning Pigs That Beat an Army of
+Elephants"** - 65 s; Megara 266 BC (burning pigs rout Antigonus' war elephants) + the Edessa 544 twist. What makes it
+the standard:
+- **Narration:** a told story, not a fact list (SCRIPT TEMPLATE > Narration style): present tense, one so/but chain,
+  one rhetorical question, one "You see," explanation, ending on the payoff word. 147 words.
+- **Voice:** ElevenLabs **Jesse - Elearning (`4N8zjn9tVNuDEBFWVHAq`), model `eleven_v4`, the voice's own stored
+  settings, UNPROCESSED** (no tempo, no pause trim, no EQ; `templates/scripts/el.py` + `short_kit/voice/prep_el.py`).
+  The script is sized for the voice (~2.3 words/s), never the voice for the script.
+- **Picture:** 3D toon cast (toon3d.ts), elephants + pigs rigs, 4 sets (Megara wall/city, the writer's room, the
+  stable, golden-hour Edessa), continuous camera with a level horizon, ONE hard cut (into the pig pen), 7 f dissolves
+  at place changes, burned-in word captions, a loop ending (the last shot rhymes with frame 0).
+- **Finish:** 120 fps chunked 2K final, every chunk checked against the preview, every frame scanned, -15 LUFS.
+Its full source is `templates/pigs/` (the project) + `templates/short_kit/` (voice, sound, captions, final assembly;
+SCRIPT_pigs.md / SHOTPLAN_pigs.md / audio/pigs_audio.py are its files). **Make every new short the way the GOLDEN
+PIPELINE section below says**; the rest of this file is the detail and the rules behind it.
 
-Older proof: **The Bridge That Fell for a Song** (`templates/bridge/`, 2026-10-31, 1831 Broughton bridge).
+Earlier standards: **Kaifeng** ("The Dirt Wall Genghis Khan's Best General Couldn't Break", `templates/kaifeng/`,
+2026-11-06: ~1000 card extras, 400 instanced trebuchets; still the reference for big crowd/siege scenes) and **The
+Bridge That Fell for a Song** (`templates/bridge/`, 2026-10-31).
 
 The style reference is a channel studied privately (`references/`: STYLE_BIBLE.md, reports/*.md, frames/).
 - Those videos are private study material. Never upload, publish or send them.
@@ -29,9 +42,85 @@ User rules that apply:
 - Save after every step.
 - "Just do it" once the script is approved.
 
-## GOLDEN PIPELINE (exactly how the Kaifeng short was made; do it this way every time)
-Paths: `<P>` = the Remotion project (the user's is `D:/youtube`), `<name>` = short id (e.g. `kaifeng`), `<Comp>` =
-component prefix (e.g. `Kaifeng`), `<P>/<name>-short/` = the short's kit folder (copy of `templates/short_kit/`).
+## SCRIPT STRUCTURE v3 (user rule, 2026-11-09; the newest: wins over v2 below where they clash)
+The user's structure for every script from the Tut short on ("Give me one kitchen-object analogy every time"):
+- [0:00-0:03] HOOK: a paradox in one line. Formula: [biggest name] + [tried X for Y days] + [failed vs tiny thing].
+  Start with the impossible, never with a place or date. (Tut: "Tomb robbers hunted Tutankhamun's gold for three
+  thousand years. Trash beat them.")
+- [0:03-0:18] SETUP: who / where / when, one line each; who wants what, what stands in the way.
+- [0:18-0:42] ESCALATION, 3 beats: a big attack; the defender counters in a weird way; the attacker tries even bigger
+  and fails again. A new visual each beat.
+- [0:42-0:56] MECHANISM: ONE analogy, a "like a..." line with a KITCHEN OBJECT, every time (Kaifeng pillow, bull
+  cardboard tube, Tut "a coin under the toaster").
+- [0:56-0:65] TWIST + LOOP: an ironic ending, then a 1-line loop question back to the hook ("So how did trash beat...").
+- Checklist before animating: hook has a name + number + failure? 3 different visuals before 0:40? One "like a"
+  line? Last line ironic?
+- LENGTH: the user wrote "210-240 words for 60-70 sec", but Jesse unprocessed reads 2.1-2.3 words/s (210 words =
+  ~95 s). Asked on the Tut script, the user chose to CUT to ~150 words for Jesse's natural pace (Tut: 156 words =
+  67.4 s). Default: v3 structure at ~145-160 words. Never speed the voice up instead.
+- A topic phrased as a category ("Buried Finds That Were Never Meant to Be Seen") becomes ONE find told as one story
+  (the one-subject title rule); offer the list version in one line.
+
+## SCRIPT TEMPLATE (user rule, v2 2026-11-07; use for EVERY new script)
+Channel: **Zed Animate**: viral faceless shorts, fast animated storytelling in the reference channel's format. The tone is clear, visual, slightly dramatic and conversational, for curious viewers aged 18-35. This template overrides the older script rules below (the ~240 words, "You see," at ~70 %, the bridge beat formula) wherever they clash. The channel-audit retention rules still apply.
+
+**Length:** 135-150 words for ~60 s. The user restated this in v2, so it stands. Sentences are 8-12 words max, short sentences only.
+
+**Hook (line 1), under 10 words, no intro.** Use ONE of these patterns:
+- "This [specific thing] did [surprising / shocking job]."
+- "What if [specific scenario] happened to you?"
+- "Nobody could [do X] until [unexpected twist]."
+- The viewer must know the payoff within 2 s.
+- Never start with "Hi guys", "Today", "In history", a date or any context.
+
+**Structure:**
+1. **Line 1:** the hook, with the payoff in it.
+2. **Line 2:** the context in ONE line: who + when / where. Example: "Sicily, 560 BC. Tyrant Phalaris."
+3. **Middle, ~80 words:** explain it in 3 visual steps (step 1 > step 2 > step 3). Each step must be animatable and is action + effect only: no lecture, no backstory.
+4. **Last 2 lines:** a twist / irony ending. Give the unexpected result, never a moral or a lesson.
+
+**Retention:**
+- A new visual or twist every 12-15 s.
+- Active verbs, and specific details over general facts.
+- No filler, no subscribe call-to-action, no hashtags in the script.
+
+**Narration style (GOLD STANDARD, pigs 2026-11-08).** The user rejected a fact-list read ("the narration is not to the
+point, checkout how [the reference channel's] narration goes"). Write a TOLD STORY:
+- Present tense throughout ("Antigonus marches", "the elephants freeze"), one protagonist side at a time.
+- One cause-and-effect chain: lines start "So...", "But...", "Then..." so each beat follows from the last.
+- One quick rhetorical question at the turn ("Does it work? The elephants freeze.").
+- One "You see," line that explains WHY, with a concrete image, kept attributed when the source is old ("You see,
+  ancient writers swore elephants panic at a pig's squeal.").
+- Concrete verbs and nouns (smash, smear, shrieking, pitch), no date dumps beyond the one context line.
+- End on the payoff word (the last word is the punchline; the picture loops).
+- Keep the template's limits (135-150 words, 8-12-word sentences, hook pattern, 3 steps, 2-line twist).
+- Pigs v2 script, for reference: "Nobody could stop war elephants until pigs started screaming. / Greece, 266 BC. King
+  Antigonus marches his elephants on Megara. / Spears bounce off their hides. Arrows barely sting. / So they smash
+  through the city's last defenders. / Desperate, the Megarians raid their own pig pens. / ... / Does it work? The
+  elephants freeze. / ... / You see, ancient writers swore elephants panic at a pig's squeal. / ... / They just hang
+  one pig from the wall. / It squeals, and the giant elephant runs." (full text: `short_kit/SCRIPT_pigs.md`).
+
+**Output when the user gives a topic** (in SCRIPT.md and in chat, then wait for "yes"):
+```
+Title: <1 title naming ONE specific subject>
+Script: <script only, 135-150 words, pure spoken text>
+Visual cues: <3 cues, e.g. "show map zooming in">
+```
+- Count the words and the longest sentence before showing the script.
+- Visual cues are shot directions for the animation. They never go inside the script, because the TTS reads anything in it aloud. They are not text overlays: only the word captions are burned in.
+- Every fact still comes from a checked source, written at the top of SCRIPT.md.
+
+**How the template maps to the picture and the rules:**
+- **Hook frame:** frame 0 shows the payoff the hook promises (the object mid-job, or the "what if" moment), low angle, with the camera already moving.
+- **Where the hook resolves:** the hook names the payoff, but HOW and WHY stay open until the steps. Set `RETENTION.resolve` to the frame of the step 1 word.
+- **Set piece (10-12 s):** the first full view of the thing at work. That is where step 1 lands at this pace.
+- **Twist cadence:** ~12 s step 1, ~25 s step 2, ~38 s step 3, ~52 s the twist. Each one gets a new set or a bigger scale.
+- **Ending:** the last shot matches frame 0 so the short loops.
+- **Pace (gold standard):** the voice is NEVER sped up, slowed or pause-trimmed. Jesse on eleven_v4 with his stored settings reads ~2.3 words/s with natural pauses (≤ 0.5 s), so 135-150 words = ~59-66 s (pigs: 147 words, 64.4 s). Size the SCRIPT for the runtime; if a short must be shorter, cut words, not tempo.
+
+## GOLDEN PIPELINE (how the Kaifeng short was built and the pigs short perfected; do it this way every time)
+Paths: `<P>` = the Remotion project (the user's is `D:/youtube`), `<name>` = short id (e.g. `pigs`), `<Comp>` =
+component prefix (e.g. `Pigs`), `<P>/<name>-short/` = the short's kit folder (copy of `templates/short_kit/`).
 Total ~4-5 h after the script is approved.
 
 **0. Setup (once per machine).** Remotion 4 + `@remotion/three`, three 0.170, R3F 9, React 19,
@@ -43,20 +132,34 @@ big drive (`TEMP=TMP=D:/remotion-tmp`). Optional Kenney CC0 GLBs in `<P>/public/
 - Find the ONE story with a visible physical cause and effect behind the user's topic; verify the key facts in a primary
   source (Kaifeng: History of Jin ch. 113 on zh.wikisource, quoted in Chinese). Drop weaker popular answers that have
   no story (sticky-rice mortar).
-- `<name>-short/SCRIPT.md`: facts + sources, 2 titles naming ONE specific subject, the script (~240 words, ~3.5 w/s,
-  "You see," at ~70 %, nothing resolves before 15 s, 3 escalating beats, "Luckily / Unluckily", a loop ending), the
-  picture idea. Example: `templates/short_kit/SCRIPT_kaifeng.md`. **Never put stage directions inside the script
+- `<name>-short/SCRIPT.md`: facts + sources, then the **SCRIPT TEMPLATE** output above (Title / Script at 135-150 words: a hook
+  under 10 words, one context line, 3 visual steps, a 2-line twist / Visual cues x3). Kaifeng's older ~240-word version is in `templates/short_kit/SCRIPT_kaifeng.md` as a
+  file-format example only. **Never put stage directions inside the script
   text** (the user's TTS read "The camera rises to show 400 catapults firing" aloud). Show it; wait for "yes".
 
-**2. Voice.** The user may hand over their own TTS file (ElevenLabs). Transcribe it first, then
-`voice/prep_voice.py <tempo>` (CUTS removes lines read by mistake, pauses trimmed to 0.36 / 0.24 s, `rubberband` tempo
-to ~3.5 words/s, 48 kHz) -> `data/narration.wav`; `voice/align_words.py` (faster-whisper word times aligned to
-`script.json`'s spelling; spoken numbers as digits) -> `data/words.json` + `words.txt`; hand-fix mis-heard words.
-TOTAL = last word end + ~0.5 s. Print every word's frame (s x 30): every beat is planned on these frames.
+**2. Voice (gold standard: ElevenLabs Jesse, UNPROCESSED).** Generate it yourself once the script is approved:
+- `voice/script.json` = the approved lines; `voice/data/el/script_tts.txt` = the same text joined with spaces, with
+  numbers spelled the way they should be said ("Greece, two sixty-six BC."; at faster speeds the model fumbled "266").
+- `python scripts/el.py tts 4N8zjn9tVNuDEBFWVHAq <name>-short/voice/data/el/script_tts.txt <...>/data/el/jesse.mp3
+  <...>/data/el/jesse_align.json eleven_v4 asis` (the key comes from `HKCU\Environment\ELEVENLABS_API_KEY`; `asis` sends
+  NO voice_settings, so the voice's stored settings apply: stability 0.5, similarity 0.75, style 0, speed 0.98).
+  Model `eleven_v4` is what the ElevenLabs site plays; multilingual_v2 and any speed / tempo / pause change made the
+  user say the voice "sounds really different". ~900 characters per take (starter plan: 36,404 a month).
+- Transcribe it with faster-whisper small.en and compare with the script (Whisper writes "Odessa" for Edessa, "Grease"
+  for Greece: spelling only). Regenerate only a real misread.
+- `cd <name>-short/voice && python prep_el.py data/el/jesse.mp3 data/el/jesse_align.json` -> `data/narration.wav`
+  (a plain decode) + `data/words.json` / `words.txt` from ElevenLabs' character alignment (more exact than Whisper;
+  NUMS folds "two sixty-six" back into "266").
+- TOTAL = last word end + ~0.5 s. Print every word's frame (s x 30): every beat is planned on these frames.
+- The user may also hand over an mp3: same steps from the transcription on (align with `align_words.py`), never
+  processed. Kokoro am_michael (`make_voice.py`) is only the fallback when the user asks for it or ElevenLabs is out.
 
-**3. The contract: `story.ts` (lead-owned).** Copy `templates/kaifeng/*` to `<P>/src/videos/<name>/`, rename
-`Kaifeng.tsx` / `KAIFENG_FRAMES` / `KaifengShort`, make `src/sandboxes/<name>/index.tsx` from `index_entry.tsx`
-(`<Comp>Short` 30 fps + `<Comp>ShortHQ` 120 fps). Rewrite story.ts for the new story, keeping its shape:
+**3. The contract: `story.ts` (lead-owned).** Copy `templates/pigs/*` to `<P>/src/videos/<name>/`, rename
+`Pigs.tsx` / `PIGS_FRAMES` / `PigsShort`, make `src/sandboxes/<name>/index.tsx` from `index_entry.tsx`
+(`<Comp>Short` 30 fps + `<Comp>ShortHQ` 120 fps). `warp.ts` stays the identity (FILM_TOTAL = TOTAL). The rigs
+(`city.ts` / `beasts.ts` / `venues.ts` / `chars.ts` + `cast.ts`) are the pigs ones: replace them per story (for a big
+siege or crowd, `templates/kaifeng/siege.ts` + `camp.ts` are the better start). Rewrite story.ts for the new story,
+keeping its shape:
 - world layout constants (one place = one coordinate frame; venues far away, e.g. z 900 / z 1500 / x -900);
 - beat functions in FRAMES from the words (`rampF`, one k-function per action, hit frames `F_*`);
 - SHARED TRAJECTORIES as story.ts functions (projectiles `PROJ` / `projAt`, swarms like `battShots`, a bomb path, door
@@ -92,6 +195,21 @@ and `python scripts/cam_speed.py out/<name>/cam.csv <from> <to> 4`. What made Ka
 - prop push-ins (5-12x zoom) become 7 f match dissolves into the macro set; crane up to people behind parapets;
 - the ending matches frame 0's framing (the hero 3/4 close) so the short loops.
 Aim for 13+/16 gates; the whip-length and rhythm gates may fail on fast transits (the motion blur covers them).
+- **Never change `cam.near` / `cam.far` per shot or set.** postprocessing copies them into its depth reads only once
+  (`EffectPass.mainCamera`), so per-set values make the lens blur read depth with a stale range: the focus misses in the
+  VIDEO render while stills look fine (tunnel short, 2026-11-07). Use one pair everywhere (tunnel: 0.1 / 6000, also in
+  the ThreeCanvas `camera` prop).
+- **Camera holds with far look points:** camrig `hold(... push)` moves the lens a FRACTION of the way to the look point; with
+  `KF` look points 40 m away that flies the lens through a close subject. Use an explicit metre advance (tunnel story.ts `H`).
+- **Re-timing a voice (a new read AFTER the picture is built):** do NOT touch story.ts. The pigs way: keep the old
+  words.json (`data/v1_*/`), run `short_kit/voice/make_warp.py` -> `data/warp.json` + `src/videos/<name>/warp.ts`
+  (`FILM_TOTAL` + `warpF(g)`: film frame g plays old story frame warpF(g); `<Comp>.tsx`'s `useStoryFrame` applies it, so
+  camera, cast, shots, DOF and FX all follow). Anchors: a line's start only where the old and new lines open with the
+  same word, plus the action words matched inside each line (SYN for spellings like hung/hang). HOLD moves a lead-in's
+  slow-down ("Does it work?") onto the shot BEFORE the action; speed is smoothed per segment, never across a hard cut.
+  Check the speed runs it prints (aim 0.6-1.4x; brief 0.3x slow motion only on dramatic content). The audio script
+  maps cues with F(old frame) -> new seconds and D(a, b) for lengths; captions come from the new words.json; the
+  final's chunk check uses `PREV=preview1 WARP_JSON=<name>-short/voice/data/warp.json`. (Older way: tunnel's `T(v1)`.)
 
 **6. Preview + review.** `npx remotion render src/sandboxes/<name>/index.tsx <Comp>Short out/<name>/preview1.mp4
 --scale 0.5 --concurrency 3 --gl angle ...` (~7.5 min); every 15th frame -> 3 labelled contact sheets
@@ -99,16 +217,22 @@ Aim for 13+/16 gates; the whip-length and rhythm gates may fail on fast transits
 `flash`, `xfade`, `planned`). Look for cropped heads, subjects too far / small, characters hidden behind walls,
 blank-wall holds, focus on the wrong thing. Check fixes with stills only.
 
-**7. Final.** `NAME=<name> COMP=<Comp> bash <name>-short/final.sh` (120 fps 2K HQ ~1 h -> tmix=4 motion blur -> mux
-mix.wav -> burn captions) -> `out/<name>/<name>_final.mp4` + `_nocaptions.mp4`; deep_qa the no-caption file (only
-intended impacts should flag). Late fixes: re-render only the touched HQ range (multiples of 4) and
-`FIXES="a:b:file" NAME=<name> bash <name>-short/splice_final.sh`. Deliver both paths + the one-subject title; upload
-only when asked.
+**7. Final.** `NAME=<name> COMP=<Comp> bash <name>-short/final_chunked.sh` (the default; 120 fps 2K HQ in 320-frame
+chunks, each checked frame by frame vs preview1 by `check_piece.py` and re-rendered if faulty -> decode + concat inside
+the one tmix=4 encode -> mux mix.wav -> burn captions; ~1-1.5 h) -> `out/<name>/<name>_final.mp4` + `_nocaptions.mp4`.
+Why chunked: one long 2K render runs Chrome out of RAM, and long 2K WebGL sessions lose textures (black sky and
+ground) or go pure WHITE at random. Three shorts in a row hit this (babushka, lastride, pigs, 2026-11-08). The old
+one-pass `final.sh` is for short renders only. Then, before delivering:
+`python scripts/scan_final.py out/<name>/<name>_nocaptions.mp4 out/<name>/preview1.mp4` (every frame; look at
+every flagged run: a camera re-keyed after the preview is fine, a fault is not), contact sheets of the whole final,
+deep_qa the no-caption file (only intended impacts should flag), loudness (-15 LUFS). Late fixes: re-render only the
+touched HQ range (multiples of 4) and `FIXES="a:b:file" NAME=<name> bash <name>-short/splice_final.sh`. Deliver both
+paths + the one-subject title, copy the final to `videos to backup`, write UPLOAD.md; upload only when asked.
 
 ## Pipeline
 1. **Topic and facts.** Pick one surprising true story with a physical cause and effect (it should be visual), plus a simple everyday analogy that explains it.
    - Write the facts with their source at the top of `SCRIPT.md`.
-2. **Script** (~3.7 words/s, 55-70 s, no pause longer than 0.33 s).
+2. **Script.** Follow the **SCRIPT TEMPLATE** section at the top: 135-150 words, ~60 s. It replaces the old "~3.7 words/s, pauses ≤ 0.33 s" rule and the bridge beat formula below; the formula stays here only as background.
    **Retention rules from the user's channel audit (2026-11-06). These come first and override the beat formula where they clash.**
    - The channel's own curves show viewers leave at **9-12 s** when the hook resolves early. Atlantis short: 28 % still watching at the end. Medieval jobs short: 58 %.
    - **Nothing resolves before 15 s.** State the puzzle, then hold the answer back. The first two sentences must not answer the hook.
@@ -362,6 +486,13 @@ Result: median frame diff 0.050, 76 % of frames > 0.03 (the user's reference: 0.
   fix: render only the touched range (`--frames=A-B` on the HQ comp, A and B+1 multiples of 4 so tmix windows stay
   whole; ~3-5 min) and splice it inside the same tmix encode (`skara-short/splice_final.sh`, FIXES="a:b:file ...").
   Check both seam frames against the full render first (mean abs diff ~0.002 = identical).
+- **2K GPU faults (2026-11-08, three shorts in a row):** partway through a long Chrome session the 2K WebGL render
+  loses its textures (sky, ground and walls go black, only lit characters remain) or turns pure white, with no error.
+  A chunk that needed a retry is the usual suspect, but faults also showed up in chunks that rendered first time.
+  `final_chunked.sh` checks each chunk with `check_piece.py` (white frames, luma ratio < 0.6 vs preview1, +25 % pixels
+  that are near-black); `scan_final.py` then catches what the chunk check can't (a single texture gone black, e.g. an
+  elephant blanket). Pigs: 320-frame chunks rendered at ~90 HQ frames/min vs ~60 for 800-frame chunks. Never stream-copy
+  (`-c copy`) concat the chunks (decode errors at the seams); join them with the concat filter in the tmix encode.
 - **deep_qa on the motion-blurred final flags ~7x more sharpness dips** than on unblurred previews. Join each dip
   run with cam.csv speed: dips on fast moves are the shutter blur doing its job; only look at dips on slow camera.
 - **Prop swaps need a carry** (the professor's pipe jumped mouth <-> wagging hand in one frame). The hand travels to
@@ -370,13 +501,57 @@ Result: median frame diff 0.050, 76 % of frames > 0.03 (the user's reference: 0.
 - **Compare frame times at half frames.** `f = t * FPS` lands a hair under the integer (1018 / 30 * 30 < 1018), so
   `f < 1018` is still true on frame 1018. Use `f < K - 0.5` for one-frame switches.
 
+## Lessons from the Tut short (2026-11-09; 5 helpers, 15 shots, 8 eras of one valley)
+Source: `D:/youtube/src/videos/tut` + `D:/youtube/tut-short` (valley / tomb / cast3d / crowd / venue helpers).
+- **Five helpers, the cast split in two:** cast3d (chars.ts + toon3d.ts: the 3D heroes + their props) and crowd
+  (cast.ts + toon.ts + cardshade.ts: every card crowd + effect card). Each could go deep (250-figure funeral, 150
+  night robbers); keep their zones apart in the briefs (3D heroes' spots listed, cards keep 1.2 m clear).
+- **One place, many eras:** SHOTS carry an `era`; every owner shows the place as it was in that era (k-functions for
+  what is built / buried / dug during a shot). Worked cleanly for 1323 BC -> 1922 AD in one valley.
+- **One shared ground:** the main-place owner's drawn surface (pile, trench, clearing, pit) must be THE ground every
+  owner stands people on. The lead exported a live `groundAt(x, z)` from valley.ts (set in update(), read by the cast
+  + cards). Put this in the main-place brief from the start; the cast + crowd owners otherwise guess heights.
+- **DOF with far look points:** `KF` keys look 40 m down the ray, so a DOF entry with cInf > 0 and no `focus` focuses
+  at 40 m and blurs the subject. Give EVERY DOF entry with blur an explicit focus point (the subject).
+- **A camera cannot fly through a doorway a character stands in** (the robber in front of the hole he smashed). Use a
+  7 f dissolve into the next set (separate camera paths per shot so each crossfade layer keeps its own camera).
+- **Characters inside a deep pit** (1.6 m) are only visible from high above; plan pit beats as top-down shots.
+- **Check positions between owners on the first merged stills:** a hut sat exactly on the hero's frame-0 spot; the
+  1917 crew stood between Carter and the lady he tips his hat to; Davis faced away from the camera on his key beat.
+  Fix by moving the contract constant or turning the character toward the lens on the beat.
+- **Tool gotcha:** apostrophes inside a Bash heredoc broke the tool's command wrapper ("unexpected EOF"). Write edit
+  scripts to a scratch .py file and run it.
+
+## Lessons from the pigs short (2026-11-08; THE GOLD STANDARD)
+Source: `D:/youtube/src/videos/pigs` + `D:/youtube/pigs-short` (city / beast / char / venue helpers, merged with
+`scripts/short_merge.py`). Three voices were tried; the user kept the third.
+- **Voice = ElevenLabs Jesse, eleven_v4, stored settings, UNPROCESSED.** Kokoro am_michael (v1) was replaced by a
+  kyu5ji11 read at speed 1.12 + pause trim + rubberband 1.05 (v2): the user said it "sounds really different" from the
+  site. v3 = Jesse with no settings sent and no processing: "a really good one". The model matters too
+  (multilingual_v2 also differs from the site). Never time-stretch a voice; size the script.
+- **Narration = a told story** (SCRIPT TEMPLATE > Narration style). The fact-list script was "not to the point".
+- **No dissolve between two brick-wall shots.** At 16 s a 7 f dissolve laid the pen's wall over the city wall: the
+  user saw "walls stutter and glitching". It is a hard CUT on the line change now (the short's only cut).
+- **Slow pushes over brick / repeating texture.** The 4-sample tmix shows 3-4 separate ghost copies of every mortar
+  line at medium speed (~5-15 px/f at 720p): it reads as stutter. A 16 f push at 9 px/f -> 38 f at 2.3 px/f fixed it.
+  Whips (25+ px/f) smear and are fine.
+- **2K GPU faults are random:** whole chunks went white or lost their textures (sky and ground black). The chunked
+  final with per-chunk checks + a full per-frame scan is mandatory (step 7).
+- **Before resuming any render after a session break, list the processes** (node / bash / chrome CommandLine). A hung
+  render from an earlier session (and a second copy of its loop) starved the GPU; killing only the render made its
+  loop start the next try. Stop the bash script itself (Git Bash children survive `taskkill /T` on the wrapper).
+- **Other sessions render too.** With several shorts rendering at once, previews ran ~10x slower and came out white.
+  If the user says to wait for another short, wait (a watcher script that polls for that short's final file).
+- **Hulls on moved parts:** `addHull` must parent the hull to its mesh (`m.add(h)`), not copy the transform at creation,
+  or the outline stays behind as a dark disc where the part started.
+
 ## Lessons from the Kaifeng short (2026-11-06; first short with toon3d heroes + 4 parallel helpers)
 Source: `D:/youtube/src/videos/kaifeng` (story.ts contract, world.ts glue; siege/camp/chars+cast/venues by 4 helper
 agents in sandboxes `kaifeng_{wall,camp,char,venue}`, merged with `scripts/kaifeng_merge.py`). ~4 h from approval to
 final render; preview 7.5 min at 0.5 scale; ~0.25 s/frame at 1080p.
 - **User-supplied voice (ElevenLabs etc.): transcribe it first.** It read a stage note from the script message aloud
-  ("The camera rises to show 400 catapults firing"). Cut it, trim pauses (sentence 0.36 s / inner 0.24 s), then
-  ffmpeg `rubberband=tempo=...:formant=preserved` to ~3.5 w/s (`kaifeng-short/voice/prep_voice.py`). Never put stage
+  ("The camera rises to show 400 catapults firing"). Cut it. (Kaifeng then trimmed pauses and rubberband-stretched
+  the read to ~3.5 w/s with `prep_voice.py`: SUPERSEDED by the pigs rule, never process the voice.) Never put stage
   directions inline in a script you hand the user for recording.
 - **A 9:16 frame is only ~26 deg wide.** A close hero and a far target must sit on nearly one line of sight; a god's view
   of four corner batteries needs a near top-down camera (~430 m up, fov 60, pitch ~76) with the frame's long axis
@@ -447,6 +622,94 @@ The user asked for a breakdown of pace at the start, how the stick figures are d
 
 - **Characters are 3D toon models**, not cards. On the railroad short's orbit (17.5→19.9 s) the boss stays frontal for half the move, then his face decal slides off the side of the sphere and the back of the head shows. A first read of "billboards" from the first half of an orbit was wrong: always check the END of an orbit.
 - **Blush** appears only on happy or embarrassed faces (soft pink ovals). There are no eye highlights.
+
+## Newest-4 study + quality upgrade (2026-11-09: the user, "adapt those to our video making ... similar to his quality or better")
+The reference channel's 4 newest shorts measured against our pigs gold standard. Full numbers, frames and tools:
+`references/reports/newest4_2026-11-09.md` (working copy `D:\youtube\ref-study-1109\FINDINGS.md`). The two newest
+moved to a stylised-PBR game-engine world (detailed models, specular, reflections, volumetric smoke, no world ink);
+characters stay our family (sphere head, ink tubes) but with bolder faces and detailed outfits.
+
+| What (median per 0.5 s, caption band masked) | his 2 newest | our pigs v3 | rule now |
+|---|---|---|---|
+| fine detail (p90 abs Laplacian, 540x960) | 0.15-0.19 | 0.044 | 180 deg shutter + DOF_K 0.5 + cas 0.4 + crisp faces |
+| warm cast mean(R-B) | -0.10..-0.19 | +0.33 | neutral/cool grade; warm only where the story is (sunset, fire) |
+| mean luminance / p2 | 0.39-0.43 / 0.03-0.10 | 0.56 / 0.135 | contrast S-curve, mids neutral; deeper shade |
+| motion blur | smooth streaks, fast movers only | 3-4 stepped ghost copies | SHUTTER 0.5 (below) |
+| loudness / LRA | -14.0 LUFS / 1.7-3.2 LU | -15.0 / 4.2 | -14 LUFS, LRA <= 3 (pending the user's listen) |
+| L/R correlation, side/mid 60-250 Hz | 0.99, -24..-29 dB | 0.95, -12.6 dB | near-mono mix, bass mono < 150 Hz |
+| bed in word gaps (400 ms p10 below p95) | 5-7 dB | 10.3 dB | ambience bed per place, never drops out |
+| SFX | recorded, broadband, every 1-2 s | synthesized (harmonic arcs) | recorded library (`sfxbank.py`), whoosh on every camera burst |
+
+**Render rules (tested on the pigs2 sandbox; A/B in `D:\youtube\out\pigs2\ab\`, motion test `out\pigs2\mb\mb_compare.jpg`):**
+- **Shutter 180 deg:** the HQ comp samples film frame n at `n + k * SHUTTER / 4` (k = 0..3, SHUTTER = 0.5) in
+  `useStoryFrame` (Pigs.tsx). Starting AT the frame keeps on-ones poses and face swaps unmixed. The old n + k/4
+  (360 deg) gave 3-4 stepped copies of every fast mover; this costs nothing extra. inputProps `post.shutter` overrides.
+- **DOF_K = 0.5** multiplies every `dofAt` cInf: backgrounds still soft, mid-ground crisp like the reference.
+- **Grade:** day = contrast S `[0, .07, .225, .5, .79, .94, 1]` (mids NEUTRAL; the old `.6` mid knot lifted the whole
+  picture), sat [1, 1.08, 1.02], cool shadow tint; golden mids .5.
+- **Day light:** lit [1.55, 1.5, 1.42], shade [0.3, 0.31, 0.42], lambert 0.75 (was 0.35: surfaces now shade with their
+  angle, volumes read solid), sky stops `#a8c6ee ... #1d58c8`, fog 40-460.
+- **Relief:** `bumpify` uses each painted world texture as its own bump map (BUMP_K 8). Cheap, subtle, keep.
+- **SSAO:** available (AO_K, NormalPass + SSAOEffect) but OFF: on the toon world it moves 1-2 levels and doubles the
+  render time. Try 1.6-2.5 on interiors only.
+- **Final encode:** `cas=0.4` after the tmix (all three final scripts).
+- **World assets, gloss and VFX:** see the next block (built 2026-11-09 after the user's "yes" to closing the gap).
+
+**World assets + glossy materials + VFX (2026-11-09 lab; report `references/reports/assetlab_2026-11-09.md`, VFX API
+`references/reports/vfx_2026-11-09.md`; lab `D:\youtube\src\videos\assetlab`, sandboxes `src/sandboxes/assetlab`, `fxlab`):**
+- **Asset kit = the big step.** `D:\youtube\public\assetkit` (631 models, 88 MB; MANIFEST.json + LICENSES.md; contact
+  sheets `D:\youtube\out\assetkit\sheet_*.png`). Build every new world from it first, code shapes only for what it lacks:
+  Quaternius MegaKits (`q_village` modular + 4 prefab houses, `q_props`, `q_nature`) are on target; KayKit a notch below;
+  pirate / older Quaternius / most Poly Pizza = flat low-poly, distance only. 8 Poly Pizza models are CC-BY 3.0
+  (catapults, camel, elephant, Greek / Roman temple, pillar, column, arch): avoid unless the user OKs a description credit.
+  `templates/pigs/assetkit.ts`: `loadAssetKit(names)` (inside the kit promise / delayRender), `placeKit(root, ak, name,
+  x, z, yaw)`, `loadGround(["cobblestone"])` + `groundMat(t, w, d)` (ambientCG PBR tiling sets). Missing in the kit:
+  cypress / olive, helmets, baskets, braziers, true amphorae, siege tower / ram, bridges, Egyptian / Asian / mud-brick
+  buildings, goat, chicken: model those in code (lathe / extrude) with `gloss()` materials.
+- **Gloss:** `templates/pigs/pbr.ts`. `pbrTone(m)` = PBR material whose DIFFUSE is our two-tone light (same lit / shade /
+  terminator / shadow) and whose SPECULAR stays physical (sun highlight, clearcoat, Fresnel, sky reflections).
+  `gloss({ color, metal, rough, coat })` for code props (bronze `{ "#c8904e", metal 1, rough .3 }`, glaze
+  `{ rough .32, coat .9 }`); `toneObject(o)` converts kit GLBs (their own roughness / metal maps win). The template's
+  Pigs.tsx sets `scene.environment = envFromSky(gl, light)` per light preset (our own sky: reflections always match).
+  Gloss only shows when props are big in frame: put hero props close to the lens.
+- **Light for textured kit worlds:** the day shade [0.3, 0.31, 0.42] (tuned for the painted world) crushes textured
+  facades. With kit assets use TONE shade [0.5, 0.52, 0.64] and world saturation (TONE.uSat) 1.2, and put the sun
+  behind / beside the camera so roofs and facades facing the lens are lit (lab variant Q).
+- **DOF on kit worlds:** cInf ~2 on wide shots (x DOF_K 0.5): the game look keeps the background mostly in focus. cInf
+  6 cost 30 % of the measured fine detail.
+- **World ink stays ON:** dropping it (the reference's newest look) made our world softer (sharp .135 -> .098).
+- **Measured (lab, 3 frames, ab.py):** kit street + cInf 2 + cas 0.4 = lum .40 / sharp .220 vs the reference's newest
+  .31-.40 / .217-.242. Still behind: density (his frames are packed with props and people) and a cooler, more vivid palette.
+- **VFX:** `templates/pigs/vfx.ts` (frame-pure, seeded; update(f) with the story frame, fractional OK): `SmokePlume`
+  (+ `SMOKE_PRESETS` steam / chimney / burning), `PuffBurst`, `Explosion` (flash, fireball, smoke cloud, shockwave
+  ring, sparks, dust), `DustTrail`, `Fire` (torch .35 / straw pack .55 / brazier .75 / bonfire 1.6; `fire.light(f)` ->
+  GLOW uniforms warms the world), `Debris` (rigid bodies simulated once, rest exactly on the ground). Replace every flat
+  smoke / fire / dust card with these. Scale smoke to the source: a brazier gets a thin pale `chimney` wisp (rate ~.12,
+  size [.1, .42]), never `burning` (that reads as a house fire). Weak spots: big dark smoke masses close up look lumpy
+  (use lighter greys), the young fireball is flat orange for ~8 frames.
+
+**Character rules (CHAR helper, toon3d.ts + chars.ts; report `references/reports/char_upgrade_2026-11-09.md`, sheets
+`D:/youtube/out/pigs2/faces/sbs_*.jpg`):**
+- Face decal at 3x the old resolution (LRU cache of 32 textures): faces stay vector-crisp in 2K close-ups.
+- Bolder features: eyes ~1.3x, brows ~1.4x thicker, heavier ink, open mouths with a white teeth band split by lines.
+- 24 EXPR (the 8 old names still work): laugh, laughCry, crying, nervous, smugBrow, sly, shockTeeth, scream, disgusted,
+  sleepy, bored, furious (head tints purple-red over 3 f + 3D steam puffs), dizzy (orbiting stars), blush, dread, focus.
+  Use a new expression on almost every line, as the reference does.
+- Outfits read as fabric: woven texture, stitched seams, buttons, belts with buckles, emblem shapes (no letters), hem
+  bands (Greek key etc.), patches, armour rivets, trimmed cloaks; hair caps with carved strands; hats with felt,
+  stitching or studs. Dress every hero this way; period costumes included.
+- Never draw 2D anger steam (cast.ts) and 3D steam on the same head (`KING_STEAM_3D`).
+
+**Sound rules (`D:\youtube\pigs-short\audio\SOUND_UPGRADE.md`, `templates/audio/sfxbank.py`, `el.py sfx`):**
+- SFX come from the recorded library `D:\youtube\sfx_lib\` (ElevenLabs sound generation, built by `build_lib.py`,
+  budget-guarded) via `sfxbank.get(name, gain_db, pitch, seed)`; story-specific sounds (animals, machines) are generated
+  per short. Synthesized SFX only as a fallback. Library BUILT 2026-11-09: 60 sounds (P1 + P2), 1,157 credits (real cost
+  ~6-10 credits per second of sound, not the documented 40). Multi-take prompts ("four separate knocks") mostly return
+  ONE event: vary repeats with pitch / gain. `crowd_panic` has an audible "go, go, go!": keep it low. The user's rule
+  (2026-11-09): "dont use the credits unwantedly": no re-rolls, extras or music generation without asking.
+- Whoosh on every camera speed peak (cam.csv), ambience bed per place, foley on visible actions: ~1 onset / 1.5-2 s.
+- Duck on the voice's ENERGY, not the word table (ElevenLabs word times leave no gaps, so a word-table duck never opens).
+- Voice stem unchanged (gain only). Near-mono, bass mono < 150 Hz.
 
 ## Look-match loop (how the bridge look was reached; reuse for any "make it look like X" pass)
 1. **Measure the reference first.** One analysis agent per topic (motion, depth, textures, characters, lighting, outlines, grade), each writing numbers, not adjectives, to `references/reports/<topic>.md`. Shared brief: `compare/CONTEXT.md`. Reports are the source of truth for every agent after.

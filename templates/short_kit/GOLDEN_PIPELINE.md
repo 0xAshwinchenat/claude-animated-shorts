@@ -1,6 +1,7 @@
-## GOLDEN PIPELINE (exactly how the Kaifeng short was made; do it this way every time)
-Paths: `<P>` = the Remotion project (the user's is `D:/youtube`), `<name>` = short id (e.g. `kaifeng`), `<Comp>` =
-component prefix (e.g. `Kaifeng`), `<P>/<name>-short/` = the short's kit folder (copy of `templates/short_kit/`).
+<!-- copy of the GOLDEN PIPELINE section of SKILL.md (regenerate it from there after any change) -->
+## GOLDEN PIPELINE (how the Kaifeng short was built and the pigs short perfected; do it this way every time)
+Paths: `<P>` = the Remotion project (the user's is `D:/youtube`), `<name>` = short id (e.g. `pigs`), `<Comp>` =
+component prefix (e.g. `Pigs`), `<P>/<name>-short/` = the short's kit folder (copy of `templates/short_kit/`).
 Total ~4-5 h after the script is approved.
 
 **0. Setup (once per machine).** Remotion 4 + `@remotion/three`, three 0.170, R3F 9, React 19,
@@ -12,20 +13,34 @@ big drive (`TEMP=TMP=D:/remotion-tmp`). Optional Kenney CC0 GLBs in `<P>/public/
 - Find the ONE story with a visible physical cause and effect behind the user's topic; verify the key facts in a primary
   source (Kaifeng: History of Jin ch. 113 on zh.wikisource, quoted in Chinese). Drop weaker popular answers that have
   no story (sticky-rice mortar).
-- `<name>-short/SCRIPT.md`: facts + sources, 2 titles naming ONE specific subject, the script (~240 words, ~3.5 w/s,
-  "You see," at ~70 %, nothing resolves before 15 s, 3 escalating beats, "Luckily / Unluckily", a loop ending), the
-  picture idea. Example: `templates/short_kit/SCRIPT_kaifeng.md`. **Never put stage directions inside the script
+- `<name>-short/SCRIPT.md`: facts + sources, then the **SCRIPT TEMPLATE** output above (Title / Script at 135-150 words: a hook
+  under 10 words, one context line, 3 visual steps, a 2-line twist / Visual cues x3). Kaifeng's older ~240-word version is in `templates/short_kit/SCRIPT_kaifeng.md` as a
+  file-format example only. **Never put stage directions inside the script
   text** (the user's TTS read "The camera rises to show 400 catapults firing" aloud). Show it; wait for "yes".
 
-**2. Voice.** The user may hand over their own TTS file (ElevenLabs). Transcribe it first, then
-`voice/prep_voice.py <tempo>` (CUTS removes lines read by mistake, pauses trimmed to 0.36 / 0.24 s, `rubberband` tempo
-to ~3.5 words/s, 48 kHz) -> `data/narration.wav`; `voice/align_words.py` (faster-whisper word times aligned to
-`script.json`'s spelling; spoken numbers as digits) -> `data/words.json` + `words.txt`; hand-fix mis-heard words.
-TOTAL = last word end + ~0.5 s. Print every word's frame (s x 30): every beat is planned on these frames.
+**2. Voice (gold standard: ElevenLabs Jesse, UNPROCESSED).** Generate it yourself once the script is approved:
+- `voice/script.json` = the approved lines; `voice/data/el/script_tts.txt` = the same text joined with spaces, with
+  numbers spelled the way they should be said ("Greece, two sixty-six BC."; at faster speeds the model fumbled "266").
+- `python scripts/el.py tts 4N8zjn9tVNuDEBFWVHAq <name>-short/voice/data/el/script_tts.txt <...>/data/el/jesse.mp3
+  <...>/data/el/jesse_align.json eleven_v4 asis` (the key comes from `HKCU\Environment\ELEVENLABS_API_KEY`; `asis` sends
+  NO voice_settings, so the voice's stored settings apply: stability 0.5, similarity 0.75, style 0, speed 0.98).
+  Model `eleven_v4` is what the ElevenLabs site plays; multilingual_v2 and any speed / tempo / pause change made the
+  user say the voice "sounds really different". ~900 characters per take (starter plan: 36,404 a month).
+- Transcribe it with faster-whisper small.en and compare with the script (Whisper writes "Odessa" for Edessa, "Grease"
+  for Greece: spelling only). Regenerate only a real misread.
+- `cd <name>-short/voice && python prep_el.py data/el/jesse.mp3 data/el/jesse_align.json` -> `data/narration.wav`
+  (a plain decode) + `data/words.json` / `words.txt` from ElevenLabs' character alignment (more exact than Whisper;
+  NUMS folds "two sixty-six" back into "266").
+- TOTAL = last word end + ~0.5 s. Print every word's frame (s x 30): every beat is planned on these frames.
+- The user may also hand over an mp3: same steps from the transcription on (align with `align_words.py`), never
+  processed. Kokoro am_michael (`make_voice.py`) is only the fallback when the user asks for it or ElevenLabs is out.
 
-**3. The contract: `story.ts` (lead-owned).** Copy `templates/kaifeng/*` to `<P>/src/videos/<name>/`, rename
-`Kaifeng.tsx` / `KAIFENG_FRAMES` / `KaifengShort`, make `src/sandboxes/<name>/index.tsx` from `index_entry.tsx`
-(`<Comp>Short` 30 fps + `<Comp>ShortHQ` 120 fps). Rewrite story.ts for the new story, keeping its shape:
+**3. The contract: `story.ts` (lead-owned).** Copy `templates/pigs/*` to `<P>/src/videos/<name>/`, rename
+`Pigs.tsx` / `PIGS_FRAMES` / `PigsShort`, make `src/sandboxes/<name>/index.tsx` from `index_entry.tsx`
+(`<Comp>Short` 30 fps + `<Comp>ShortHQ` 120 fps). `warp.ts` stays the identity (FILM_TOTAL = TOTAL). The rigs
+(`city.ts` / `beasts.ts` / `venues.ts` / `chars.ts` + `cast.ts`) are the pigs ones: replace them per story (for a big
+siege or crowd, `templates/kaifeng/siege.ts` + `camp.ts` are the better start). Rewrite story.ts for the new story,
+keeping its shape:
 - world layout constants (one place = one coordinate frame; venues far away, e.g. z 900 / z 1500 / x -900);
 - beat functions in FRAMES from the words (`rampF`, one k-function per action, hit frames `F_*`);
 - SHARED TRAJECTORIES as story.ts functions (projectiles `PROJ` / `projAt`, swarms like `battShots`, a bomb path, door
@@ -61,6 +76,21 @@ and `python scripts/cam_speed.py out/<name>/cam.csv <from> <to> 4`. What made Ka
 - prop push-ins (5-12x zoom) become 7 f match dissolves into the macro set; crane up to people behind parapets;
 - the ending matches frame 0's framing (the hero 3/4 close) so the short loops.
 Aim for 13+/16 gates; the whip-length and rhythm gates may fail on fast transits (the motion blur covers them).
+- **Never change `cam.near` / `cam.far` per shot or set.** postprocessing copies them into its depth reads only once
+  (`EffectPass.mainCamera`), so per-set values make the lens blur read depth with a stale range: the focus misses in the
+  VIDEO render while stills look fine (tunnel short, 2026-11-07). Use one pair everywhere (tunnel: 0.1 / 6000, also in
+  the ThreeCanvas `camera` prop).
+- **Camera holds with far look points:** camrig `hold(... push)` moves the lens a FRACTION of the way to the look point; with
+  `KF` look points 40 m away that flies the lens through a close subject. Use an explicit metre advance (tunnel story.ts `H`).
+- **Re-timing a voice (a new read AFTER the picture is built):** do NOT touch story.ts. The pigs way: keep the old
+  words.json (`data/v1_*/`), run `short_kit/voice/make_warp.py` -> `data/warp.json` + `src/videos/<name>/warp.ts`
+  (`FILM_TOTAL` + `warpF(g)`: film frame g plays old story frame warpF(g); `<Comp>.tsx`'s `useStoryFrame` applies it, so
+  camera, cast, shots, DOF and FX all follow). Anchors: a line's start only where the old and new lines open with the
+  same word, plus the action words matched inside each line (SYN for spellings like hung/hang). HOLD moves a lead-in's
+  slow-down ("Does it work?") onto the shot BEFORE the action; speed is smoothed per segment, never across a hard cut.
+  Check the speed runs it prints (aim 0.6-1.4x; brief 0.3x slow motion only on dramatic content). The audio script
+  maps cues with F(old frame) -> new seconds and D(a, b) for lengths; captions come from the new words.json; the
+  final's chunk check uses `PREV=preview1 WARP_JSON=<name>-short/voice/data/warp.json`. (Older way: tunnel's `T(v1)`.)
 
 **6. Preview + review.** `npx remotion render src/sandboxes/<name>/index.tsx <Comp>Short out/<name>/preview1.mp4
 --scale 0.5 --concurrency 3 --gl angle ...` (~7.5 min); every 15th frame -> 3 labelled contact sheets
@@ -68,8 +98,14 @@ Aim for 13+/16 gates; the whip-length and rhythm gates may fail on fast transits
 `flash`, `xfade`, `planned`). Look for cropped heads, subjects too far / small, characters hidden behind walls,
 blank-wall holds, focus on the wrong thing. Check fixes with stills only.
 
-**7. Final.** `NAME=<name> COMP=<Comp> bash <name>-short/final.sh` (120 fps 2K HQ ~1 h -> tmix=4 motion blur -> mux
-mix.wav -> burn captions) -> `out/<name>/<name>_final.mp4` + `_nocaptions.mp4`; deep_qa the no-caption file (only
-intended impacts should flag). Late fixes: re-render only the touched HQ range (multiples of 4) and
-`FIXES="a:b:file" NAME=<name> bash <name>-short/splice_final.sh`. Deliver both paths + the one-subject title; upload
-only when asked.
+**7. Final.** `NAME=<name> COMP=<Comp> bash <name>-short/final_chunked.sh` (the default; 120 fps 2K HQ in 320-frame
+chunks, each checked frame by frame vs preview1 by `check_piece.py` and re-rendered if faulty -> decode + concat inside
+the one tmix=4 encode -> mux mix.wav -> burn captions; ~1-1.5 h) -> `out/<name>/<name>_final.mp4` + `_nocaptions.mp4`.
+Why chunked: one long 2K render runs Chrome out of RAM, and long 2K WebGL sessions lose textures (black sky and
+ground) or go pure WHITE at random. Three shorts in a row hit this (babushka, lastride, pigs, 2026-11-08). The old
+one-pass `final.sh` is for short renders only. Then, before delivering:
+`python scripts/scan_final.py out/<name>/<name>_nocaptions.mp4 out/<name>/preview1.mp4` (every frame; look at
+every flagged run: a camera re-keyed after the preview is fine, a fault is not), contact sheets of the whole final,
+deep_qa the no-caption file (only intended impacts should flag), loudness (-15 LUFS). Late fixes: re-render only the
+touched HQ range (multiples of 4) and `FIXES="a:b:file" NAME=<name> bash <name>-short/splice_final.sh`. Deliver both
+paths + the one-subject title, copy the final to `videos to backup`, write UPLOAD.md; upload only when asked.

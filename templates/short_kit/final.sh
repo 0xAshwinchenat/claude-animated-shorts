@@ -7,14 +7,15 @@
 #   4. burn the word captions (captions.ass, Arial Black copied into captions/fonts)
 set -euo pipefail
 : "${NAME:?set NAME}" "${COMP:?set COMP}"
-PROJECT=${PROJECT:-$PWD}; KIT=${KIT:-$PROJECT/$NAME-short}; BIGTMP=${BIGTMP:-D:/remotion-tmp}
+PROJECT=${PROJECT:-$(pwd -W 2>/dev/null || pwd)};   # a Windows path (D:/...): ffmpeg cannot open /d/...
+ KIT=${KIT:-$PROJECT/$NAME-short}; BIGTMP=${BIGTMP:-D:/remotion-tmp}
 CHROME=${CHROME:-"C:/Program Files/Google/Chrome/Application/chrome.exe"}
 cd "$PROJECT"; export TEMP="$BIGTMP" TMP="$BIGTMP"; OUT=out/$NAME; mkdir -p $OUT
 if [ ! -f $OUT/hq120.mp4 ] || [ "${FORCE:-0}" = 1 ]; then
   npx remotion render src/sandboxes/$NAME/index.tsx ${COMP}ShortHQ $OUT/hq120.mp4 --scale 1.3333333333333333 --codec h264 --crf 14 \
     --concurrency ${CONC:-3} --timeout 240000 --gl angle --browser-executable "$CHROME" --log error 2>&1 | tee $OUT/render_hq.log | tail -3
 fi
-ffmpeg -v error -y -i $OUT/hq120.mp4 -vf "tmix=frames=4:weights='1 1 1 1',select='eq(mod(n\,4)\,3)',setpts=N/30/TB" -r 30 \
+ffmpeg -v error -y -i $OUT/hq120.mp4 -vf "tmix=frames=4:weights='1 1 1 1',select='eq(mod(n\,4)\,3)',setpts=N/30/TB,cas=0.4" -r 30 \
   -c:v libx264 -crf 15 -preset slow -pix_fmt yuv420p -an $OUT/video30.mp4
 ffmpeg -v error -y -i $OUT/video30.mp4 -i "$KIT/audio/mix.wav" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 320k -shortest $OUT/${NAME}_nocaptions.mp4
 cd "$KIT/captions"
