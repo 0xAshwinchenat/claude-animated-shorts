@@ -1,0 +1,76 @@
+[13:56:57] quota 5556/36404; library ceiling 10556 (start 5556 + 5000); spent so far 0; rate 40.0/s
+[13:56:59] FAIL whoosh_fast: SFX failed 401: {"detail":{"type":"authentication_error","code":"unauthorized","message":"The API key you used is missing the permission sound_generation to execute this operation.","status":"missing_permissions","request_id":"22d3ea5981b9b1be1d8b2a6426cfff52"}}
+[15:18:35] account quota 5556/36404; library budget 5000, spent so far 0 (index.json); rate 40.0/s
+[15:19:01] OK whoosh_fast (P1, 0.8 s) 0 credits -> whoosh_fast; library spent 0/5000
+[15:19:01] --limit 1 reached
+[15:19:01] done: library spent 0 of 5000 credits; 1 playable sounds from 1 takes
+[15:20:12] account quota 5564/36404; library budget 5000, spent so far 32 (index.json); rate 40.0/s
+[15:20:39] OK whoosh_medium (P1, 1.2 s) 0 credits (counter did not move; charged ~48) -> whoosh_medium; library spent 80/5000
+[15:21:05] OK whoosh_sweep (P1, 1.6 s) 0 credits (counter did not move; charged ~64) -> whoosh_sweep; library spent 144/5000
+[15:21:32] OK whip_pan (P1, 0.8 s) 0 credits (counter did not move; charged ~32) -> whip_pan; library spent 176/5000
+[15:21:39] MEASURED RATE: 24 credits for 2.5 s = 9.6 credits/s; priority-1 set ~893 credits, all ~1240
+[15:21:39]   NOTE wood_knock: asked for 4 takes, found 1
+[15:21:39] OK wood_knock (P1, 2.5 s) 24 credits -> wood_knock_1; library spent 200/5000
+[15:22:19] account quota 5600/36404; library budget 5000, spent so far 200 (index.json); rate 9.6/s
+[15:22:33] OK wood_break (P1, 1.5 s) 0 credits (counter did not move; charged ~14) -> wood_break; library spent 214/5000
+[15:22:47]   NOTE metal_clang: asked for 3 takes, found 1
+[15:22:47] OK metal_clang (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> metal_clang_1; library spent 238/5000
+[15:23:05]   NOTE body_thud: asked for 3 takes, found 1
+[15:23:05] OK body_thud (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> body_thud_1; library spent 262/5000
+[15:23:20]   NOTE steps_dirt: asked for 6 takes, found 1
+[15:23:20] OK steps_dirt (P1, 3.0 s) 0 credits (counter did not move; charged ~29) -> steps_dirt_1; library spent 291/5000
+[15:23:44]   NOTE cloth_move: asked for 4 takes, found 1
+[15:23:44] OK cloth_move (P1, 2.5 s) 105 credits -> cloth_move_1; library spent 396/5000
+[15:23:58]   NOTE mud_squelch: asked for 4 takes, found 1
+[15:23:58] OK mud_squelch (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> mud_squelch_1; library spent 420/5000
+[15:24:11] OK gate_creak (P1, 1.8 s) 0 credits (counter did not move; charged ~17) -> gate_creak; library spent 437/5000
+[15:24:25] OK torch_dunk (P1, 1.5 s) 0 credits (counter did not move; charged ~14) -> torch_dunk; library spent 451/5000
+[15:24:39] OK scroll_rustle (P1, 1.5 s) 73 credits -> scroll_rustle; library spent 524/5000
+[15:24:54] OK crowd_murmur (P1, 4.0 s, loop) 0 credits (counter did not move; charged ~38) -> crowd_murmur; library spent 562/5000
+[15:25:07] OK crowd_cheer (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> crowd_cheer; library spent 586/5000
+[15:25:21] OK crowd_panic (P1, 2.0 s) 0 credits (counter did not move; charged ~19) -> crowd_panic; library spent 605/5000
+[15:25:35]   NOTE male_yell: asked for 3 takes, found 1
+[15:25:35] OK male_yell (P1, 3.0 s) 115 credits -> male_yell_1; library spent 720/5000
+[15:25:50] OK amb_outdoor_day (P1, 4.5 s, loop) 0 credits (counter did not move; charged ~43) -> amb_outdoor_day; library spent 763/5000
+[15:26:10] OK amb_town (P1, 4.5 s, loop) 0 credits (counter did not move; charged ~43) -> amb_town; library spent 806/5000
+[15:26:26] OK amb_room (P1, 4.0 s, loop) 130 credits -> amb_room; library spent 936/5000
+[15:26:41] OK amb_battle_far (P1, 4.5 s, loop) 0 credits (counter did not move; charged ~43) -> amb_battle_far; library spent 979/5000
+[15:26:57] OK amb_wind_walls (P1, 4.5 s, loop) 0 credits (counter did not move; charged ~43) -> amb_wind_walls; library spent 1022/5000
+[15:27:16] OK fire_ignite (P1, 1.5 s) 0 credits (counter did not move; charged ~14) -> fire_ignite; library spent 1036/5000
+[15:27:36] OK fire_crackle (P1, 4.0 s, loop) 0 credits (counter did not move; charged ~38) -> fire_crackle; library spent 1074/5000
+[15:27:49] OK fire_whoosh (P1, 1.5 s) 0 credits (counter did not move; charged ~14) -> fire_whoosh; library spent 1088/5000
+[15:28:08] OK spear_swish (P1, 0.8 s) 0 credits (counter did not move; charged ~8) -> spear_swish; library spent 1096/5000
+[15:28:22] OK arrow_volley (P1, 2.0 s) 83 credits -> arrow_volley; library spent 1179/5000
+[15:28:41]   NOTE arrow_thunk: asked for 4 takes, found 1
+[15:28:41] OK arrow_thunk (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> arrow_thunk_1; library spent 1203/5000
+[15:28:55] OK pig_squeal (P1, 3.5 s) 0 credits (counter did not move; charged ~34) -> pig_squeal_1, pig_squeal_2, pig_squeal_3; library spent 1237/5000
+[15:29:14] OK pig_squeal_long (P1, 2.0 s) 0 credits (counter did not move; charged ~19) -> pig_squeal_long; library spent 1256/5000
+[15:29:29]   NOTE pig_grunt: asked for 5 takes, found 1
+[15:29:29] OK pig_grunt (P1, 3.0 s) 110 credits -> pig_grunt_1; library spent 1366/5000
+[15:29:48] OK pig_herd_panic (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> pig_herd_panic; library spent 1390/5000
+[15:30:01] OK elephant_trumpet_a (P1, 2.0 s) 0 credits (counter did not move; charged ~19) -> elephant_trumpet_a; library spent 1409/5000
+[15:30:22] OK elephant_trumpet_b (P1, 2.0 s) 65 credits -> elephant_trumpet_b; library spent 1474/5000
+[15:30:41]   NOTE elephant_steps: asked for 4 takes, found 1
+[15:30:41] OK elephant_steps (P1, 2.5 s) 0 credits (counter did not move; charged ~24) -> elephant_steps_1; library spent 1498/5000
+[15:30:56] OK elephant_stampede (P1, 3.5 s, loop) 0 credits (counter did not move; charged ~34) -> elephant_stampede; library spent 1532/5000
+[15:31:16] OK whoosh_heavy (P2, 1.2 s) 0 credits (counter did not move; charged ~12) -> whoosh_heavy; library spent 1544/5000
+[15:31:35] OK stone_thud (P2, 1.8 s) 90 credits -> stone_thud_1, stone_thud_2; library spent 1634/5000
+[15:31:54] OK cartoon_bonk (P2, 0.7 s) 0 credits (counter did not move; charged ~7) -> cartoon_bonk; library spent 1641/5000
+[15:32:07] OK dust_hit (P2, 1.0 s) 0 credits (counter did not move; charged ~10) -> dust_hit; library spent 1651/5000
+[15:32:27]   NOTE steps_stone: asked for 6 takes, found 1
+[15:32:27] OK steps_stone (P2, 3.0 s) 0 credits (counter did not move; charged ~29) -> steps_stone_1; library spent 1680/5000
+[15:32:46] OK pen_scratch (P2, 1.5 s) 0 credits (counter did not move; charged ~14) -> pen_scratch; library spent 1694/5000
+[15:33:05]   NOTE wood_creak: asked for 2 takes, found 1
+[15:33:05] OK wood_creak (P2, 1.5 s) 0 credits (counter did not move; charged ~14) -> wood_creak_1; library spent 1708/5000
+[15:33:19] OK rope_pulley (P2, 1.5 s) 0 credits (counter did not move; charged ~14) -> rope_pulley; library spent 1722/5000
+[15:33:38] OK metal_click (P2, 1.5 s) 0 credits (counter did not move; charged ~14) -> metal_click_1, metal_click_2, metal_click_3; library spent 1736/5000
+[15:33:52] OK water_splash (P2, 1.0 s) 55 credits -> water_splash; library spent 1791/5000
+[15:34:12] OK crowd_gasp (P2, 1.2 s) 0 credits (counter did not move; charged ~12) -> crowd_gasp; library spent 1803/5000
+[15:34:26] OK pop (P2, 0.5 s) 0 credits (counter did not move; charged ~5) -> pop; library spent 1808/5000
+[15:34:44] OK boing (P2, 0.8 s) 0 credits (counter did not move; charged ~8) -> boing; library spent 1816/5000
+[15:34:59] OK slide_whistle_down (P2, 1.0 s) 35 credits -> slide_whistle_down; library spent 1851/5000
+[15:35:18]   NOTE arrow_whiz: asked for 2 takes, found 1
+[15:35:18] OK arrow_whiz (P2, 1.5 s) 0 credits (counter did not move; charged ~14) -> arrow_whiz_1; library spent 1865/5000
+[15:35:33] OK pig_trotters (P2, 2.0 s, loop) 0 credits (counter did not move; charged ~19) -> pig_trotters; library spent 1884/5000
+[15:35:52] OK baby_elephant_toot (P2, 1.0 s) 45 credits -> baby_elephant_toot; library spent 1929/5000
+[15:35:52] done: library spent 1929 of 5000 credits; 59 playable sounds from 54 takes

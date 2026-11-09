@@ -1,0 +1,60 @@
+ok    ambience  amb_battle_far         
+ok    ambience  amb_outdoor_day        
+ok    ambience  amb_room               
+ok    ambience  amb_town               
+ok    ambience  amb_wind_walls         
+ok    animal    baby_elephant_toot     
+ok    animal    elephant_stampede      
+ok    animal    elephant_steps         
+ok    animal    elephant_trumpet_a     
+ok    animal    elephant_trumpet_b     
+WORDS animal    pig_grunt              Ah, ah, ah, ah.
+WORDS animal    pig_herd_panic         AHHHHHHHHHH
+ok    animal    pig_squeal             
+ok    animal    pig_squeal_long        
+ok    animal    pig_trotters           
+ok    comic     boing                  
+ok    comic     pop                    
+ok    comic     slide_whistle_down     
+WORDS crowd     crowd_cheer            CHEERING
+ok    crowd     crowd_gasp             
+ok    crowd     crowd_murmur           
+WORDS crowd     crowd_panic            Go, go, go, go, go, go!
+ok    crowd     male_yell              
+ok    fire      fire_crackle           
+ok    fire      fire_ignite            
+ok    fire      fire_whoosh            
+ok    foley     cloth_move             
+ok    foley     gate_creak             
+ok    foley     metal_click            
+ok    foley     mud_squelch            
+ok    foley     pen_scratch            
+ok    foley     rope_pulley            
+ok    foley     scroll_rustle          
+ok    foley     torch_dunk             
+ok    foley     water_splash           
+ok    foley     wood_creak             
+ok    impact    body_thud              
+ok    impact    cartoon_bonk           
+ok    impact    dust_hit               
+ok    impact    metal_clang            
+ok    impact    stone_thud             
+ok    impact    wood_break             
+ok    impact    wood_knock             
+ok    steps     steps_dirt             
+ok    steps     steps_stone            
+ok    weapon    arrow_thunk            
+ok    weapon    arrow_volley           
+ok    weapon    arrow_whiz             
+ok    weapon    spear_swish            
+ok    whoosh    whip_pan               
+ok    whoosh    whoosh_fast            
+ok    whoosh    whoosh_heavy           
+ok    whoosh    whoosh_medium          
+ok    whoosh    whoosh_sweep           
+
+flagged: 4
+  pig_grunt -> Ah, ah, ah, ah.
+  pig_herd_panic -> AHHHHHHHHHH
+  crowd_cheer -> CHEERING
+  crowd_panic -> Go, go, go, go, go, go!

@@ -1,0 +1,8 @@
+[15:20:12] account quota 5564/36404; library budget 5000, spent so far 32 (index.json); rate 40.0/s
+[15:20:39] OK whoosh_medium (P1, 1.2 s) 0 credits (counter did not move; charged ~48) -> whoosh_medium; library spent 80/5000
+[15:21:05] OK whoosh_sweep (P1, 1.6 s) 0 credits (counter did not move; charged ~64) -> whoosh_sweep; library spent 144/5000
+[15:21:32] OK whip_pan (P1, 0.8 s) 0 credits (counter did not move; charged ~32) -> whip_pan; library spent 176/5000
+[15:21:39] MEASURED RATE: 24 credits for 2.5 s = 9.6 credits/s; priority-1 set ~893 credits, all ~1240
+[15:21:39]   NOTE wood_knock: asked for 4 takes, found 1
+[15:21:39] OK wood_knock (P1, 2.5 s) 24 credits -> wood_knock_1; library spent 200/5000
+quota check failed: 429 {'tier': None, 'character_count': None, 'character_limit': None, 'next_character_count_reset_unix': None, 'voice_slots_used': None, 'voice_limit': None}

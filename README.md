@@ -34,5 +34,10 @@ Claude then follows `SKILL.md`: topic and facts, then script, then voice, then t
 - Set `REMOTION_TMP` to a folder on a big drive. Every Remotion bundle copies `public/` (~1.3 GB) into the temp folder.
 - Story, characters and voice should always be your own. Use the references for the look, not the content.
 
+## Project files (`project/`)
+`project/` holds backed-up copies of project-side folders from `D:\youtube` that are not part of the skill: the 3D asset
+kit (`public/assetkit`), the recorded SFX library (`sfx_lib`), and the asset / VFX lab scenes. See `project/README.md`.
+
 ## License
-The code and docs are MIT (see `LICENSE`). The reference frames are included for style study only.
+The code and docs are MIT (see `LICENSE`). The reference frames are included for style study only. The asset kit keeps
+its own licenses (`project/public/assetkit/LICENSES.md`: CC0, plus 8 CC-BY 3.0 models).
